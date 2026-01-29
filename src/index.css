@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* =========================
+     BACKGROUNDS
+  ========================= */
+  --bg-primary: #070B14;
+  --bg-secondary: #0B1224;
+  --bg-tertiary: #111A33;
+  --bg-glass: rgba(17, 26, 51, 0.7);
+
+  /* =========================
+     BRAND – CYAN (Principal)
+  ========================= */
+  --brand-cyan: #16E0FF;
+  --brand-cyan-soft: #3CCEFF;
+  --brand-cyan-dark: #0BB3D6;
+
+  /* =========================
+     ACCENT – MAGENTA
+  ========================= */
+  --accent-magenta: #FF2F92;
+  --accent-magenta-soft: #FF6AB7;
+  --accent-magenta-dark: #C61D6F;
+
+  /* =========================
+     ELECTRIC BLUES
+  ========================= */
+  --electric-blue: #1A3D8F;
+  --electric-blue-soft: #2B5FFF;
+
+  /* =========================
+     TEXT
+  ========================= */
+  --text-primary: #EAF6FF;
+  --text-secondary: #B8C7E0;
+  --text-muted: #7A8DB3;
+  --text-inverse: #070B14;
+
+  /* =========================
+     BORDERS
+  ========================= */
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-cyan: rgba(22, 224, 255, 0.35);
+  --border-magenta: rgba(255, 47, 146, 0.35);
+
+  /* =========================
+     SHADOWS & GLOW
+  ========================= */
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.45);
+
+  --glow-cyan-soft: 0 0 8px rgba(22, 224, 255, 0.4);
+  --glow-cyan: 0 0 14px rgba(22, 224, 255, 0.65);
+  --glow-cyan-strong: 0 0 22px rgba(22, 224, 255, 0.85);
+
+  --glow-magenta-soft: 0 0 8px rgba(255, 47, 146, 0.4);
+  --glow-magenta: 0 0 14px rgba(255, 47, 146, 0.65);
+  --glow-magenta-strong: 0 0 22px rgba(255, 47, 146, 0.85);
+
+  /* =========================
+     GRADIENTS
+  ========================= */
+  --gradient-cyan: linear-gradient(135deg, #16E0FF 0%, #0BB3D6 100%);
+  --gradient-magenta: linear-gradient(135deg, #FF2F92 0%, #C61D6F 100%);
+  --gradient-neon: linear-gradient(135deg, #16E0FF 0%, #FF2F92 100%);
+
+  /* =========================
+     UI STATES
+  ========================= */
+  --state-hover-cyan: #3CCEFF;
+  --state-hover-magenta: #FF6AB7;
+  --state-disabled: #4B5875;
+
+  /* =========================
+     RADIUS
+  ========================= */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* =========================
+     TRANSITIONS
+  ========================= */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--brand-cyan);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+a:hover {
+  color: var(--state-hover-cyan);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}

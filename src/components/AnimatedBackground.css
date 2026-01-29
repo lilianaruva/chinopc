@@ -1,0 +1,620 @@
+/**
+ * AnimatedBackground.css
+ *
+ * Gamer room atmosphere with neon light animations
+ *
+ * Animation Logic:
+ * - Lines move horizontally/vertically across screen using translateX/Y
+ * - Multiple layers with different speeds create parallax depth
+ * - Breathing/pulsing effects via opacity animations
+ * - Glow spots use scale transforms for subtle movement
+ * - All animations use ease-in-out for smooth, organic feel
+ *
+ * Performance Notes:
+ * - Only transform and opacity are animated (GPU-accelerated)
+ * - will-change hints browser for optimization
+ * - Reduced motion users get static fallback
+ * - SVG filters are applied sparingly to avoid GPU overload
+ */
+
+/* ============================================
+   BASE CONTAINER
+   ============================================ */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+
+  /* Static fallback background */
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(22, 224, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 47, 146, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(22, 224, 255, 0.02) 0%, transparent 70%),
+    var(--bg-primary);
+}
+
+/* ============================================
+   GRADIENT BASE LAYER
+   ============================================ */
+.animated-bg__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 25%, rgba(22, 224, 255, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 75%, rgba(255, 47, 146, 0.06) 0%, transparent 45%),
+    linear-gradient(180deg, var(--bg-primary) 0%, rgba(11, 18, 36, 0.95) 100%);
+  animation: gradientShift 20s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* ============================================
+   AMBIENT GLOW SPOTS
+   Creates depth and atmosphere like RGB lighting
+   ============================================ */
+.animated-bg__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform, opacity;
+}
+
+.animated-bg__glow--cyan {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(22, 224, 255, 0.15) 0%, transparent 70%);
+  animation: glowPulseCyan 8s ease-in-out infinite;
+}
+
+.animated-bg__glow--magenta {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(255, 47, 146, 0.12) 0%, transparent 70%);
+  animation: glowPulseMagenta 10s ease-in-out infinite;
+}
+
+.animated-bg__glow--cyan-2 {
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(22, 224, 255, 0.08) 0%, transparent 70%);
+  animation: glowFloat 12s ease-in-out infinite;
+}
+
+@keyframes glowPulseCyan {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.8;
+  }
+  33% {
+    transform: scale(1.1) translate(20px, 10px);
+    opacity: 1;
+  }
+  66% {
+    transform: scale(0.95) translate(-10px, 5px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes glowPulseMagenta {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.15) translate(-30px, -20px);
+    opacity: 0.9;
+  }
+}
+
+@keyframes glowFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* ============================================
+   SVG NEON LINES CONTAINER
+   ============================================ */
+.animated-bg__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Speed layers for parallax effect */
+.animated-bg__lines--slow {
+  opacity: 0.4;
+}
+
+.animated-bg__lines--medium {
+  opacity: 0.6;
+}
+
+.animated-bg__lines--fast {
+  opacity: 0.8;
+}
+
+.animated-bg__lines--vertical {
+  opacity: 0.3;
+}
+
+/* ============================================
+   NEON LINE ANIMATIONS
+   Each line moves across the screen with breathing effect
+   ============================================ */
+.neon-line {
+  will-change: transform, opacity;
+}
+
+/* Horizontal lines - Layer 1 (Slow) */
+.neon-line--h1 {
+  animation:
+    lineMoveSlow 25s linear infinite,
+    lineBreatheSlow 4s ease-in-out infinite;
+}
+
+.neon-line--h2 {
+  animation:
+    lineMoveSlowReverse 30s linear infinite,
+    lineBreatheMedium 5s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+.neon-line--h3 {
+  animation:
+    lineMoveSlow 28s linear infinite,
+    lineBreatheSlow 6s ease-in-out infinite;
+  animation-delay: -15s;
+}
+
+/* Horizontal lines - Layer 2 (Medium) */
+.neon-line--h4 {
+  animation:
+    lineMoveMedium 18s linear infinite,
+    lineBreatheMedium 3.5s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+.neon-line--h5 {
+  animation:
+    lineMoveMediumReverse 20s linear infinite,
+    lineBreatheSlow 4.5s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+/* Diagonal line */
+.neon-line--d1 {
+  animation:
+    lineDiagonal 22s linear infinite,
+    lineBreatheMedium 5s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+/* Horizontal lines - Layer 3 (Fast) */
+.neon-line--h6 {
+  animation:
+    lineMoveFast 12s linear infinite,
+    lineBreatheFast 2.5s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.neon-line--h7 {
+  animation:
+    lineMoveFastReverse 14s linear infinite,
+    lineBreatheMedium 3s ease-in-out infinite;
+  animation-delay: -9s;
+}
+
+/* Vertical lines */
+.neon-line--v1 {
+  animation:
+    lineMoveVertical 20s linear infinite,
+    lineBreatheSlow 5s ease-in-out infinite;
+}
+
+.neon-line--v2 {
+  animation:
+    lineMoveVerticalReverse 24s linear infinite,
+    lineBreatheSlow 6s ease-in-out infinite;
+  animation-delay: -10s;
+}
+
+/* Line movement keyframes */
+@keyframes lineMoveSlow {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(2200px);
+  }
+}
+
+@keyframes lineMoveSlowReverse {
+  0% {
+    transform: translateX(2200px);
+  }
+  100% {
+    transform: translateX(-200px);
+  }
+}
+
+@keyframes lineMoveMedium {
+  0% {
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(2300px);
+  }
+}
+
+@keyframes lineMoveMediumReverse {
+  0% {
+    transform: translateX(2300px);
+  }
+  100% {
+    transform: translateX(-300px);
+  }
+}
+
+@keyframes lineMoveFast {
+  0% {
+    transform: translateX(-400px);
+  }
+  100% {
+    transform: translateX(2400px);
+  }
+}
+
+@keyframes lineMoveFastReverse {
+  0% {
+    transform: translateX(2400px);
+  }
+  100% {
+    transform: translateX(-400px);
+  }
+}
+
+@keyframes lineDiagonal {
+  0% {
+    transform: translate(-300px, -200px);
+  }
+  100% {
+    transform: translate(2200px, 1400px);
+  }
+}
+
+@keyframes lineMoveVertical {
+  0% {
+    transform: translateY(-400px);
+  }
+  100% {
+    transform: translateY(1500px);
+  }
+}
+
+@keyframes lineMoveVerticalReverse {
+  0% {
+    transform: translateY(1500px);
+  }
+  100% {
+    transform: translateY(-400px);
+  }
+}
+
+/* Breathing/pulsing effects for neon glow */
+@keyframes lineBreatheSlow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes lineBreatheMedium {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes lineBreatheFast {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   FLOATING PARTICLES
+   Small dots that float around for extra ambiance
+   ============================================ */
+.animated-bg__particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.particle--1 {
+  width: 4px;
+  height: 4px;
+  top: 20%;
+  left: 15%;
+  background: var(--brand-cyan);
+  box-shadow: 0 0 10px var(--brand-cyan), 0 0 20px var(--brand-cyan);
+  animation: particleFloat1 15s ease-in-out infinite;
+}
+
+.particle--2 {
+  width: 3px;
+  height: 3px;
+  top: 60%;
+  left: 80%;
+  background: var(--accent-magenta);
+  box-shadow: 0 0 8px var(--accent-magenta), 0 0 16px var(--accent-magenta);
+  animation: particleFloat2 18s ease-in-out infinite;
+}
+
+.particle--3 {
+  width: 2px;
+  height: 2px;
+  top: 40%;
+  left: 50%;
+  background: var(--brand-cyan);
+  box-shadow: 0 0 6px var(--brand-cyan);
+  animation: particleFloat3 12s ease-in-out infinite;
+}
+
+.particle--4 {
+  width: 3px;
+  height: 3px;
+  top: 75%;
+  left: 25%;
+  background: var(--brand-cyan);
+  box-shadow: 0 0 8px var(--brand-cyan), 0 0 14px var(--brand-cyan);
+  animation: particleFloat4 20s ease-in-out infinite;
+}
+
+.particle--5 {
+  width: 2px;
+  height: 2px;
+  top: 30%;
+  left: 70%;
+  background: var(--accent-magenta);
+  box-shadow: 0 0 6px var(--accent-magenta);
+  animation: particleFloat5 14s ease-in-out infinite;
+}
+
+.particle--6 {
+  width: 4px;
+  height: 4px;
+  top: 85%;
+  left: 60%;
+  background: var(--brand-cyan);
+  box-shadow: 0 0 10px var(--brand-cyan), 0 0 18px var(--brand-cyan);
+  animation: particleFloat6 16s ease-in-out infinite;
+}
+
+@keyframes particleFloat1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(30px, -20px) scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(60px, 10px) scale(0.8);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(20px, 30px) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes particleFloat2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translate(-40px, 25px) scale(1.3);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translate(-20px, -15px) scale(0.9);
+    opacity: 0.6;
+  }
+}
+
+@keyframes particleFloat3 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(25px, -35px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes particleFloat4 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(45px, -25px) scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+@keyframes particleFloat5 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  33% {
+    transform: translate(-20px, 30px);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translate(15px, 15px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes particleFloat6 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-35px, -40px) scale(0.8);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   GRID OVERLAY
+   Subtle tech/circuit pattern
+   ============================================ */
+.animated-bg__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(22, 224, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 224, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 10s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   Static fallback for accessibility
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .animated-bg__gradient,
+  .animated-bg__glow,
+  .neon-line,
+  .particle,
+  .animated-bg__grid {
+    animation: none !important;
+  }
+
+  .animated-bg__glow--cyan {
+    opacity: 0.6;
+  }
+
+  .animated-bg__glow--magenta {
+    opacity: 0.5;
+  }
+
+  .animated-bg__glow--cyan-2 {
+    opacity: 0.4;
+  }
+
+  .neon-line {
+    opacity: 0.5;
+  }
+
+  .particle {
+    opacity: 0.5;
+  }
+
+  .animated-bg__grid {
+    opacity: 0.3;
+  }
+}
+
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   Reduce complexity on smaller screens
+   ============================================ */
+@media (max-width: 768px) {
+  /* Reduce glow blur for performance */
+  .animated-bg__glow {
+    filter: blur(60px);
+  }
+
+  /* Hide some particles on mobile */
+  .particle--3,
+  .particle--5 {
+    display: none;
+  }
+
+  /* Reduce grid visibility */
+  .animated-bg__grid {
+    opacity: 0.2;
+    background-size: 40px 40px;
+  }
+
+  /* Simplify glow spots */
+  .animated-bg__glow--cyan-2 {
+    display: none;
+  }
+}
+
+/* ============================================
+   LARGE SCREENS
+   Enhance visuals on bigger displays
+   ============================================ */
+@media (min-width: 1920px) {
+  .animated-bg__glow--cyan {
+    width: 800px;
+    height: 800px;
+  }
+
+  .animated-bg__glow--magenta {
+    width: 700px;
+    height: 700px;
+  }
+}

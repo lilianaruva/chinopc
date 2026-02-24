@@ -1,73 +1,132 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🖥️ CHINOPC
 
-Currently, two official plugins are available:
+### Armados personalizados para gaming, streaming y trabajo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![Ver pagina](https://img.shields.io/badge/🌐%20Ver%20Pagina-lilianaruva.github.io/chinopc-blueviolet?style=for-the-badge)](https://lilianaruva.github.io/chinopc/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev)
 
-## React Compiler
+</div>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ ¿Qué es CHINOPC?
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**CHINOPC** es una tienda de armado de computadoras personalizadas ubicada en Ciudad de Mexico. Nos especializamos en construir la PC ideal para cada persona, ya sea para jugar, hacer streaming o trabajar.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+> 💡 **¿Tu objetivo es jugar a maximos graficos? ¿Transmitir en vivo? ¿Editar video?**
+> En CHINOPC te asesoramos y armamos el equipo perfecto segun tu presupuesto y necesidades.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🌐 Visitanos en linea
+
+<div align="center">
+
+### 👉 [lilianaruva.github.io/chinopc](https://lilianaruva.github.io/chinopc/) 👈
+
+</div>
+
+---
+
+## 🖼️ Capturas de pantalla
+
+<div align="center">
+
+### Pagina de inicio
+
+![Home](src/assets/base/home%20responsive.png)
+
+### Galeria de builds
+
+![Galeria](src/assets/base/gallery-responsive.png)
+
+### Opiniones de clientes
+
+![Opiniones](src/assets/base/opinions.png)
+
+</div>
+
+---
+
+## 🛠️ ¿Como funciona?
+
+El proceso para tener tu PC ideal es muy sencillo:
+
+| Paso | Que hacemos |
+|------|-------------|
+| 1️⃣ **Contacto** | Nos escribes por WhatsApp o agendas una asesoria gratuita |
+| 2️⃣ **Cotizacion** | Te enviamos opciones de builds segun tu presupuesto y uso |
+| 3️⃣ **Armado** | Ensamblamos tu PC con componentes de calidad y pruebas rigurosas |
+| 4️⃣ **Entrega** | Recibes tu equipo listo para usar con garantia y soporte tecnico |
+
+---
+
+## 🎮 Tipos de builds disponibles
+
+| Build | Componentes | Ideal para |
+|-------|-------------|-----------|
+| **Entry Gaming** | RTX 4060 · Ryzen 5 · 16GB RAM | Juegos casuales y esports |
+| **Streaming** | RTX 4060 · Intel i5 · 16GB RAM | Streamers y creadores de contenido |
+| **Gaming Pro** | RTX 4070 · Ryzen 7 · 32GB RAM | Gaming de alto rendimiento |
+| **Workstation** | RTX 4080 · Ryzen 9 · 64GB RAM | Edicion de video y diseño profesional |
+
+---
+
+## 📬 Contacto
+
+| Canal | Detalle |
+|-------|---------|
+| 📱 WhatsApp | +52 55 1234 5678 |
+| 📧 Email | contacto@chinopc.com |
+| 📍 Ubicacion | Ciudad de Mexico, CDMX |
+| 🕐 Horario | Lunes a Sabado · 10:00 – 19:00 |
+
+---
+
+## 🚀 Para desarrolladores
+
+¿Quieres correr el proyecto localmente? Sigue estos pasos:
+
+```bash
+# 1. Clona el repositorio
+git clone https://github.com/lilianaruva/chinopc.git
+cd chinopc
+
+# 2. Instala dependencias
+npm install
+
+# 3. Inicia el servidor de desarrollo
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+El sitio estara disponible en `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Comandos disponibles
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev      # Servidor de desarrollo con recarga en caliente
+npm run build    # Compila para produccion
+npm run lint     # Verifica el codigo con ESLint
+npm run preview  # Previsualiza el build de produccion
 ```
+
+### Stack tecnologico
+
+- **React 19** — Interfaz de usuario
+- **TypeScript 5.9** — Tipado estatico
+- **Vite 6** — Servidor de desarrollo y bundler
+- **CSS personalizado** — Estilos con fondo animado de neon
+
+---
+
+<div align="center">
+
+© 2025 CHINOPC · Todos los derechos reservados
+
+**[🌐 Visitar sitio](https://lilianaruva.github.io/chinopc/)**
+
+</div>
